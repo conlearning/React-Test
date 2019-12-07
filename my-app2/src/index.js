@@ -1,43 +1,27 @@
 import React from 'react';
+import { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
 // React.
-class App extends React.Component{
-    state = {
-        num: 1
-    }
-    render() {
-        return (
-            <div>
-                sss
-            </div>
-        );
-    }
-    componentDidUpdate(prevProps, prevState) {
-        console.log(this.state.num)
-    }
-    componentDidMount() {
-        setTimeout(() => {
-            console.log('timeout')
-        })
-        new Promise((resovle) => {
-            console.log('before')
-            resovle('then')
-            console.log('after')
-        }).then(res => {
-            console.log(res)
-        })
-        let {num} = this.state
-        this.setState({
-            num: ++num
-        }, () => {
-            console.log('after setState')
-        })
-        console.log('---')
+
+class InputNumber extends React.Component {
+    render(){
+        return(
+            <input value={this.props.value} placeholder={this.props.defaultValue} onChange={this.props.onChange} />
+        )
     }
 }
-export default App
+
+function App(){
+    const [value,setValue] = useState('aaa')
+    return (
+        <div>
+        <InputNumber value={value} onChange={e=>{}}/>
+        <InputNumber defaultValue={value} onChange={e=>{}}/>
+        </div>
+    )
+}
 
 ReactDOM.render(
 	<App />,
